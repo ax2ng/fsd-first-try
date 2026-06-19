@@ -12,9 +12,9 @@ const users = [
 ];
 
 const tasks = [
-    {id: 1, title : 'Task 1', description : 'Understanding the FSD technique', done: true},
-    {id: 2, title : 'Task 2', description : 'Make sure understand the concept', done: true},
-    {id: 3, title : 'Task 3', description : 'are you sure about this?', done: true},   
+    {id: 1, title : 'Task 1', description : 'Understanding the FSD technique', done: false},
+    {id: 2, title : 'Task 2', description : 'Make sure understand the concept', done: false},
+    {id: 3, title : 'Task 3', description : 'are you sure about this?', done: false},
 ]
 
 app.get("/api/users", (req, res) => {

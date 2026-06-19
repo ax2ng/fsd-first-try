@@ -1,10 +1,11 @@
-// SIgnel responsibility: только для отображения списка задач
-export function TaskList({tasks}) {
+// UI бизнес-модели у каждого слайса может быть свой ui
+export function TaskList({tasks, renderAction}) {
     return (
         <ul>
             {tasks.map((task) => (
                 <li key={task.id}>
-                    {task.title} - {task.description}
+                    {task.done ? "+" : "-"} {task.title} {task.description}
+                    {renderAction ? renderAction(task) : null}
                 </li>
             ))}
         </ul>
