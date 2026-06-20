@@ -1,21 +1,22 @@
-import { useState, useEffect } from "react";
-import { getUsers, UserList } from "../entities/user";
-import {TaskBoard} from "../widgets/task-board/index.js";
+import {useState} from "react";
+import {TeamPage} from "../pages/team-page";
+import {TasksPage} from "../pages/tasks-page";
 
+// роутер - какая страница открыта
 function App() {
-  const [users, setUsers] = useState([]);
+    const [page, setPage] = useState("team");
 
-  useEffect(() => {
-    getUsers().then((data) => setUsers(data));
-  }, []);
+    return (
+        <div>
+            <nav>
+                <button onClick={() => setPage("team")}>Команда</button>
+                <button onClick={() => setPage("tasks")}>Задачи</button>
+            </nav>
 
-  return (
-   <div>
-      <h1>Our Team</h1>
-      <UserList users={users} />
-        <TaskBoard />
-    </div>
-  );
+            {page === "team" && <TeamPage/>}
+            {page === "tasks" && <TasksPage/>}
+        </div>
+    );
 }
 
 export default App;
