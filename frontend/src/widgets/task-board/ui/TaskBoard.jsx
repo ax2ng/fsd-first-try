@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getTasks, TaskList } from "../../../entities/task";
+import { getTasks, updateTask, TaskList } from "../../../entities/task";
 import { toggleTask, ToggleTaskButton } from "../../../features/toggle-task";
 
 // Widget полностью собранный блок дернули сущности и фичи
@@ -10,8 +10,10 @@ export function TaskBoard() {
         getTasks().then((data) => setTasks(data));
     }, []);
 
-    const handleToggle = (id) => {
-        setTasks((prev) => toggleTask(prev, id));
+    const handleToggle = async (id) => {
+        const current = tasks.find((t) => t.id === id);
+        await updateTask(id, !current.done);     // сохраняем на бэке
+        setTasks((prev) => toggleTask(prev, id)); // потом обновляем экран
     };
 
     return (
