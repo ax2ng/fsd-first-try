@@ -12,13 +12,16 @@ export function TaskBoard() {
 
     const handleToggle = async (id) => {
         const current = tasks.find((t) => t.id === id);
-        await updateTask(id, !current.done);     // сохраняем на бэке
-        setTasks((prev) => toggleTask(prev, id)); // потом обновляем экран
+        await updateTask(id, !current.done);
+        setTasks((prev) => toggleTask(prev, id));
     };
+
+    const doneCount = tasks.filter((t) => t.done).length;
 
     return (
         <div>
             <h1>Tasks</h1>
+            <p>Сделано {doneCount} из {tasks.length}</p>
             <TaskList
                 tasks={tasks}
                 renderAction={(task) => (
